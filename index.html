@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Interactive Game Use your mind and earn </title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f2f2f2; /* Fallback color */
+            background-image: url('background-image.jpg');
+            background-size: 70%;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+        }
+        h1 {
+            font-size: 28px;
+            font-weight: bold;
+            color: #3498db; /* Blue color */
+            margin-bottom: 20px;
+        }
+        #game-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 50px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            background-color: #e74c3c; /* Red color */
+            color: white;
+            border: none;
+        }
+        button:hover {
+            background-color: #c0392b; /* Darker red color on hover */
+        }
+        .blue { color: #3498db; }
+        .orange { color: #e67e22; }
+        .red { color: #e74c3c; }
+        .green { color: #27ae60; }
+        .yellow { color: #f39c12; }
+        .purple { color: #9b59b6; }
+
+        /* Add new styles for animated boxes */
+        .box-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .box {
+            width: 50px;
+            height: 50px;
+            background-color: #3498db;
+            margin: 0 10px;
+            animation: pulse 2s infinite; /* Apply pulse animation */
+        }
+
+        /* Define the pulse animation */
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+        }
+
+        /* Clock animation styles */
+        .clock-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+            font-size: 24px;
+            color: #e74c3c;
+            font-weight: bold;
+        }
+        .clock {
+            animation: rotate 60s linear infinite;
+            transform-origin: center center;
+            transform: rotate(0deg);
+        }
+
+        /* Define the rotate animation */
+        @keyframes rotate {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Username display style */
+        .username-display {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #3498db;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to the <span class="orange">Interactive</span> Code Game!</h1>
+    <div id="game-container">
+        <button id="start-button">Start Game</button>
+        <div id="output"></div>
+        <div class="box-container">
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+        </div>
+        <div class="clock-container">
+            <div class="clock">⏰</div>
+        </div>
+        <div id="username-display"></div> <!-- Display username here -->
+    </div>
+
+    <script>
+        function print_with_delay(message, delay, colorClass) {
+            setTimeout(() => {
+                outputDiv.innerHTML += `<p class="${colorClass}">${message}</p>`;
+                window.scrollTo(0, document.body.scrollHeight);
+            }, delay * 2000);
+        }
+
+        const startButton = document.getElementById('start-button');
+        const outputDiv = document.getElementById('output');
+        const usernameDisplay = document.getElementById('username-display');
+
+        startButton.addEventListener('click', () => {
+            startButton.style.display = 'none';
+            outputDiv.innerHTML = '';
+
+            const user_name = prompt("Hey there! What's your nickname? ");
+            const a = parseInt(prompt("Enter any lucky number: "));
+            const b = parseInt(prompt("Enter any magic number: "));
+
+            const sum_result = a + b;
+            const diff_result = b - a;
+            const mul_result = a * b;
+            const div_result = b / a;
+            const mod_result = a % b;
+
+            print_with_delay("Loading.....................⏳", 2, "black");
+            print_with_delay(`Oooooh, hi <span style="color: #e74c3c;"><strong><span style="color: black;">${user_name}</span></strong></span>! you're welcome here. It's me your AI buddy created by Deveen. 🎩 You may have chance to win this game and earn rewards`, 4, "red");
+
+            print_with_delay("Ok, let's begin. Randomly making work with your given number.", 6, "blue");
+            print_with_delay("Abracadabra! Alakazam! 🎩✨", 7, "green");
+            print_with_delay("Commencing the cosmic calculation dance.........mmmmmm............👶👶", 8, "red");
+
+            print_with_delay(`<table class="message-table">
+                      <tr><td><div class="clock-container"><div class="clock">⏰</div></div></td><td style="font-weight: bold;">Behold! The sum of your enchanted numbers is: <span class="blue">${sum_result}</span> ✨</td></tr>
+                  </table>`, 9, "blue");
+            print_with_delay(`<table class="message-table">
+                      <tr><td><div class="clock-container"><div class="clock">⏰</div></div></td><td style="font-weight: bold;">The mystical difference reveals: <span class="orange">${diff_result}</span> 🔍</td></tr>
+                  </table>`, 10, "orange");
+            print_with_delay(`<table class="message-table">
+                      <tr><td><div class="clock-container"><div class="clock">⏰</div></div></td><td style="font-weight: bold;">The magical product will be: <span class="yellow">${mul_result}</span> 🧪</td></tr>
+                  </table>`, 11, "yellow");
+            print_with_delay(`<table class="message-table">
+                      <tr><td><div class="clock-container"><div class="clock">⏰</div></div></td><td style="font-weight: bold;">Dividing the stars... Quotient: <span class="purple">${div_result.toFixed(2)} ➗</td></tr>
+                  </table>`, 12, "purple");
+            print_with_delay(`<table class="message-table">
+                      <tr><td><div class="clock-container"><div class="clock">⏰</div></div></td><td style="font-weight: bold;">Unlocking the cosmic vault..... The remainder is: <span class="green">${mod_result} 💰</td></tr>
+                  </table>`, 13, "green");
+
+            print_with_delay("By the laughter of the jesters, the calculations are deemed correct, TAKE SCREENSHOT OF ABOVE ! 🤣", 14, "purple");
+            print_with_delay("Send the screenshot to me, you will win if I fail to guess your given numbers within 1 hour. BYE BYE 👋🥗", 15, "black");
+            print_with_delay("I told you 'bye,' what are you still doing here? 🙄 Maybe I should code a door for you. 🚪😄", 25, "blue");
+            print_with_delay("SERIOUSLY?", 30, "pink");
+            print_with_delay("REALLY? I'm gonna count 1 to 3 now", 36, "black");
+            print_with_delay("1..", 41, "red");
+            print_with_delay("2...", 48, "pink");
+            print_with_delay("3", 57, "blue");
+
+            print_with_delay("Game AI left the window", 66, "black");
+
+            usernameDisplay.innerHTML = `<div class="username-display">${user_name}</div>`;
+        });
+    </script>
+</body>
+</html>
